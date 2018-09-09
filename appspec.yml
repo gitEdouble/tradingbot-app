@@ -1,0 +1,10 @@
+version: 0.0
+os: linux
+files:
+  - source: source
+    destination: /opt/tradingbot
+hooks:
+  ApplicationStart:
+    - location: /opt/tradingbot/Run.sh
+      timeout: 3600
+
