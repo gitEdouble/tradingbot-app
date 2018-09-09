@@ -28,12 +28,13 @@ public class FXTradingBot {
 
 	@SuppressWarnings("resource")
 	public static void main(String[] args) {
-		if (args.length == 0) {
-			LOG.fatal("Usage: FxTradingBot <Implementation Config FileName>");
-			System.exit(1);
-		}
+//		if (args.length == 0) {
+//			LOG.fatal("Usage: FxTradingBot <Implementation Config FileName>");
+//			System.exit(1);
+//		}
 		
-		ApplicationContext appContext = new ClassPathXmlApplicationContext("tradingbot-app.xml", args[0]);
+		ApplicationContext appContext = new ClassPathXmlApplicationContext("tradingbot-app.xml", "tradingbot-oanda.xml");		
+		//ApplicationContext appContext = new ClassPathXmlApplicationContext("tradingbot-app.xml", args[0]);
 
 		MarketDataStreamingService marketDataStreamingService = appContext.getBean(MarketDataStreamingService.class);
 		marketDataStreamingService.startMarketDataStreaming();

@@ -8,7 +8,6 @@
   <packaging>jar</packaging>
 
   <name>tradingbot-app</name>
-  <url>http://maven.apache.org</url>
   <repositories>
     <repository>
          <id>twitter4j.org</id>
@@ -116,6 +115,47 @@
                     <target>${jdk.version}</target>
                </configuration>
           </plugin>
-      </plugins>
+   <plugin>
+      <!-- Build an executable JAR -->
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-jar-plugin</artifactId>
+      <version>3.1.0</version>
+      <configuration>
+        <archive>
+          <manifest>
+            <addClasspath>true</addClasspath>
+<!--             <classpathPrefix>lib/</classpathPrefix> -->
+            <mainClass>com.precioustech.fxtrading.tradingbot.FXTradingBot</mainClass>
+          </manifest>
+        </archive>
+      </configuration>
+    </plugin>
+    <plugin>
+      <artifactId>maven-shade-plugin</artifactId>
+         <version>3.1.1</version>
+         <executions>
+          <execution>
+            <phase>package</phase> <!-- bind to the packaging phase -->
+            <goals>
+              <goal>shade</goal>
+            </goals>
+			<configuration>
+              <transformers>
+                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                  <mainClass>com.precioustech.fxtrading.tradingbot.FXTradingBot</mainClass>
+                </transformer>
+                <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+				  <resource>META-INF/spring.handlers</resource>
+				</transformer>
+				<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+				  <resource>META-INF/spring.schemas</resource>
+				</transformer>
+              </transformers>				
+			</configuration>
+          </execution>
+        </executions>                               
+    </plugin>  
+   </plugins>
 </build>
+  <url>Ricospace.com</url>
 </project>
