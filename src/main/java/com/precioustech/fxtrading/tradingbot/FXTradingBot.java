@@ -32,6 +32,7 @@ public class FXTradingBot {
 			LOG.fatal("Usage: FxTradingBot <Implementation Config FileName>");
 			System.exit(1);
 		}
+		
 		ApplicationContext appContext = new ClassPathXmlApplicationContext("tradingbot-app.xml", args[0]);
 
 		MarketDataStreamingService marketDataStreamingService = appContext.getBean(MarketDataStreamingService.class);
